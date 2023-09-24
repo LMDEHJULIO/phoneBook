@@ -96,16 +96,21 @@ public class PhoneBook {
 
     // for every entry in the map - find how to express this
     public String reverseLookUp(String phoneNumber){
-        for(Map.Entry<String, List<String>> entry : phoneBook.entrySet()){
-            List<String> phoneNumbers = entry.getValue();
+//        for(Map.Entry<String, List<String>> entry : phoneBook.entrySet()){
+//            List<String> phoneNumbers = entry.getValue();
+//
+//            if(phoneNumbers.contains(phoneNumber)){
+//                return entry.getKey();
+//            }
+//        }
 
-            if(phoneNumbers.contains(phoneNumber)){
-                return entry.getKey();
-            }
-
-//            return phoneNumbers.contains(phoneNumber) && entry.getKey();
-        }
-        return null;
+        return phoneBook.entrySet().
+                stream()
+                .filter(entry -> entry.getValue().contains(phoneNumber))
+                .findFirst()
+                .get()
+                .getKey()
+                .toString();
     }
 
     /**
