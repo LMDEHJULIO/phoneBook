@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,10 @@ public class PhoneBook {
      */
 
     public boolean add(String name, String phoneNumber){
+        if(!phoneBook.containsKey(name)){
+            phoneBook.put(name, new ArrayList<>());
+        }
+
         phoneBook.get(name).add(phoneNumber);
 
         return true;
@@ -82,11 +87,29 @@ public class PhoneBook {
      * @description Phonbook class that maps a name to phoneNumbers
      */
 
+    public List<String> lookup(String name){
+        return phoneBook.get(name);
+    }
+
     /**
      * reverseLookUp
      * remove - removes an entry to the composite associated data type
      * @description Phonbook class that maps a name to phoneNumbers
      */
+
+    // for every entry in the map - find how to express this
+    public String reverseLookUp(String phoneNumber){
+        for(Map.Entry<String, List<String>> entry : phoneBook.entrySet()){
+            List<String> phoneNumbers = entry.getValue();
+
+            if(phoneNumbers.contains(phoneNumber)){
+                return entry.getKey();
+            }
+
+//            return phoneNumbers.contains(phoneNumber) && entry.getKey();
+        }
+        return null;
+    }
 
     /**
      * getAllContactNames
