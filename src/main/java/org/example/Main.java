@@ -16,5 +16,8 @@ public class Main {
 
         System.out.println(phoneBook1.lookup("Julio Rodriguez"));
         System.out.println(phoneBook1.reverseLookUp("215-090-0000"));
+
+        phoneBook1.add("JRod", "215-090-3333");
+        System.out.println(phoneBook1.getAllContactNames());
     }
 }

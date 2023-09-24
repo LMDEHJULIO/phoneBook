@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @description Phonebook class that maps a name to phoneNumbers
@@ -118,6 +115,18 @@ public class PhoneBook {
      * remove - removes an entry to the composite associated data type
      * @description Phonbook class that maps a name to phoneNumbers
      */
+
+    public String getAllContactNames(){
+        StringBuilder sb = new StringBuilder("");
+
+        Set<String> keys = phoneBook.keySet();
+
+        for(String key : keys){
+            sb.append(", ").append(key);
+        }
+
+        return sb.toString();
+    }
 
 
 
