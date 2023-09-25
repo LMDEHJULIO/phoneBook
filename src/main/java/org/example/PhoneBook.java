@@ -88,13 +88,6 @@ public class PhoneBook {
 
     // for every entry in the map - find how to express this
     public String reverseLookUp(String phoneNumber){
-//        for(Map.Entry<String, List<String>> entry : phoneBook.entrySet()){
-//            List<String> phoneNumbers = entry.getValue();
-//
-//            if(phoneNumbers.contains(phoneNumber)){
-//                return entry.getKey();
-//            }
-//        }
 
                 //Get entries from phonebook
         return   phoneBook.entrySet()
