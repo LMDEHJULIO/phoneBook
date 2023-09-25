@@ -1,20 +1,13 @@
 package org.example;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * @description Phonebook class that maps a name to phoneNumbers
  */
 
 public class PhoneBook {
-
-    //
-//     initalize private array/arrayList of names
-//    initialize private array/arrayList of phoneNumbers
-
-
-    // initialize Map<Person, PhoneNumber> or
-    // Map<String, List<String>
 
     private Map<String, List<String>> phoneBook;
 
@@ -42,8 +35,8 @@ public class PhoneBook {
 
     /**
      * addAll - adds many phone numbers to a single name entry
-     * @params - phoneNumbers to be added to
-     * @description Phonbook class that maps a name to phoneNumbers
+     * @params String name, List<String> of phoneNumbers to be added to entry
+     * @return boolean - confirmation that the operation was successful
      */
 
     // For each phoneNumber - put phoneNumber as value @ Person Key
@@ -58,8 +51,7 @@ public class PhoneBook {
 
     /**
      * remove - removes an entry to the composite associated data type
-     * @param key that is set to have its value removed
-     * @description Phonbook class that maps a name to phoneNumbers
+     * @param name - Name key used to access & remove marching entry
      */
 
     //Map.remove at the given key
@@ -70,7 +62,7 @@ public class PhoneBook {
 
     /**
      * hasEntry - checks if entry exists within map
-     * @param String name - entry to be checked for existence
+     * @param name - entry to be checked for existence
      * @return Boolean - confirmation if entry exits
      */
 
@@ -79,9 +71,9 @@ public class PhoneBook {
     }
 
     /**
-     * lookUp
-     * remove - removes an entry to the composite associated data type
-     * @description Phonbook class that maps a name to phoneNumbers
+     * lookUp - searches for an entry value by key
+     * @params name - name entry representing a person in the phonebook
+     * @return List<String> - List of all possible phone numbers for a given person
      */
 
     public List<String> lookup(String name){
@@ -89,9 +81,9 @@ public class PhoneBook {
     }
 
     /**
-     * reverseLookUp
-     * remove - removes an entry to the composite associated data type
-     * @description Phonbook class that maps a name to phoneNumbers
+     * reverseLookUp - Searches for an entry key by its value
+     * @param phoneNumber - phoneNumber value used to lookup eye in reverse
+     * @return String - String of entry key if operation successful
      */
 
     // for every entry in the map - find how to express this
@@ -104,37 +96,40 @@ public class PhoneBook {
 //            }
 //        }
 
-        return phoneBook.entrySet().
-                stream()
+                //Get entries from phonebook
+        return   phoneBook.entrySet()
+                //Make a stream from entries
+                .stream()
+                //filter out the entry contains the phonenumber
                 .filter(entry -> entry.getValue().contains(phoneNumber))
+                // get the first instance - there should only be one
                 .findFirst()
+                // get the entry from filtered list
                 .get()
+                // get the key
                 .getKey()
+                // convert key to string & return it
                 .toString();
     }
 
     /**
      * getAllContactNames
-     * @params
-     * @return
-     * remove - removes an entry to the composite associated data type
-     * @description Phonbook class that maps a name to phoneNumbers
+     * @params null
+     * @return String - String representing all contact names
      */
 
     public String getAllContactNames(){
         StringBuilder sb = new StringBuilder("");
 
-        Set<String> keys = phoneBook.keySet();
-
-        for(String key : keys){
-            sb.append(", ").append(key);
-        }
+        phoneBook.keySet().forEach(key -> sb.append(key + ", "));
 
         return sb.toString();
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "PhoneBook{" +
+                "phoneBook=" + phoneBook +
+                '}';
+    }
 }

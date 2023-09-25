@@ -1,13 +1,8 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
-//    public static void(String input){
-//
-//    }
     public static void main(String[] args) {
 
         PhoneBook phoneBook1 = new PhoneBook();
@@ -20,6 +15,19 @@ public class Main {
         phoneBook1.add("JRod", "215-090-3333");
 
         System.out.println(phoneBook1.reverseLookUp("215-090-3333"));
+
         System.out.println(phoneBook1.getAllContactNames());
+
+        phoneBook1.remove("JRod");
+
+        System.out.println(phoneBook1.getAllContactNames());
+
+        phoneBook1.addAll("Julio Rodriguez", List.of("215-839-1232", "212-343-2345", "856-654-2345"));
+
+        System.out.println(phoneBook1);
+
+        System.out.println(phoneBook1.hasEntry("Julio Rodriguez"));
+
+        System.out.println(phoneBook1.hasEntry("JRod"));
     }
 }
