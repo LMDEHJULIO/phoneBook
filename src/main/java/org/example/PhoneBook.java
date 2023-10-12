@@ -22,11 +22,16 @@ public class PhoneBook {
      */
 
     public boolean add(String name, String phoneNumber){
-        if(!phoneBook.containsKey(name)){
-            phoneBook.put(name, new ArrayList<>());
-        }
+        PBUtility.isNull(name);
+        PBUtility.isNull(phoneNumber);
 
-        phoneBook.get(name).add(phoneNumber);
+//        if(!phoneBook.containsKey(name)){
+//            phoneBook.put(name, new ArrayList<>());
+//        }
+
+//        phoneBook.get(name).add(phoneNumber);
+
+        phoneBook.computeIfAbsent(name, k -> new ArrayList<>()).add(phoneNumber);
 
         return true;
     }
@@ -43,8 +48,8 @@ public class PhoneBook {
     // probably establish some error checking code to ensure phone has all digits, is not null, etc
     // if so, put to key
 
-    public boolean addAll(String name, List<String> phoneNumber){
-        phoneBook.get(name).addAll(phoneNumber);
+    public boolean addAll(String name, List<String> phoneNumbers){
+        phoneBook.computeIfAbsent(name, k -> new ArrayList<>()).addAll(phoneNumbers);
 
         return true;
     }

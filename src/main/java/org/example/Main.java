@@ -29,5 +29,7 @@ public class Main {
         System.out.println(phoneBook1.hasEntry("Julio Rodriguez"));
 
         System.out.println(phoneBook1.hasEntry("JRod"));
+
+        phoneBook1.add("Chocolate Factory", "234-232-2344");
     }
 }
