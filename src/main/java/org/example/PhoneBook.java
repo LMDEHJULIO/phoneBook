@@ -49,6 +49,8 @@ public class PhoneBook {
     // if so, put to key
 
     public boolean addAll(String name, List<String> phoneNumbers){
+        PBUtility.isNull(name);
+        PBUtility.isNull(phoneNumbers.toString());
         phoneBook.computeIfAbsent(name, k -> new ArrayList<>()).addAll(phoneNumbers);
 
         return true;
@@ -62,6 +64,8 @@ public class PhoneBook {
     //Map.remove at the given key
 
     public void remove(String name) {
+        PBUtility.isNull(name);
+
         phoneBook.remove(name);
     }
 
@@ -72,6 +76,8 @@ public class PhoneBook {
      */
 
     public boolean hasEntry(String name){
+        PBUtility.isNull(name);
+
         return phoneBook.containsKey(name);
     }
 
@@ -82,6 +88,8 @@ public class PhoneBook {
      */
 
     public List<String> lookup(String name){
+        PBUtility.isNull(name);
+
         return phoneBook.get(name);
     }
 
@@ -93,6 +101,7 @@ public class PhoneBook {
 
     // for every entry in the map - find how to express this
     public String reverseLookUp(String phoneNumber){
+        PBUtility.isNull(phoneNumber);
 
                 //Get entries from phonebook
         return   phoneBook.entrySet()
