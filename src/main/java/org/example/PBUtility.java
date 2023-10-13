@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,8 +16,6 @@ public class PBUtility {
         return object;
     }
 
-
-
     public static boolean isValidPhoneNumber(String phoneNumber) {
         // Remove all () or -
         phoneNumber.replaceAll("[\\s()-]", "");
@@ -26,6 +25,11 @@ public class PBUtility {
 
     public static <T> boolean hasDuplicates(List<T> list) {
         Set<T> set = new HashSet<>(list);
+
+        if(set.size() < list.size()){
+            throw new IllegalArgumentException("Duplicate phone numbers in list");
+        }
+
         return set.size() < list.size();
     }
 
@@ -34,10 +38,14 @@ public class PBUtility {
 
     public static void validateInput(String name, String... phoneNumbers) {
         checkIfNull(name, "Name is null");
+
+        hasDuplicates(Arrays.asList((phoneNumbers)));
+
         for (String num : phoneNumbers) {
             checkIfNull(num, "Phone number is null");
             isValidPhoneNumber(num);
         }
+
     }
 
 }
