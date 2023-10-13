@@ -23,7 +23,11 @@ class PhoneBookTest {
     @Test
     void add() {
         assertTrue(phoneBook.add("Steve Jobs", "1-800-Stevie"));
+    }
 
+    @Test
+    void testNullAdd(){
+        assertThrows(IllegalArgumentException.class, () -> phoneBook.add("Jacob", null ));
     }
 
     @Test

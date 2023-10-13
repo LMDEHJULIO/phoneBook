@@ -1,13 +1,43 @@
 package org.example;
 
-public class PBUtility {
-    public static void isNull(String input){
-        String errorMsg = input == null ? input + "is null" : null;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-        if(errorMsg !=null) {
-            throw new IllegalArgumentException(errorMsg);
+public class PBUtility {
+
+    // More general/flexible null checker. Takes object type and dynamic error message as args
+    public static <T> T checkIfNull(T object, String errorMessage){
+        if(object == null){
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        return object;
+    }
+
+
+
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+        // Remove all () or -
+        phoneNumber.replaceAll("[\\s()-]", "");
+        // Checking if the phone number has exactly 10 digits.
+        return phoneNumber != null && phoneNumber.matches("\\d{10}");
+    }
+
+    public static <T> boolean hasDuplicates(List<T> list) {
+        Set<T> set = new HashSet<>(list);
+        return set.size() < list.size();
+    }
+
+
+    // Bundled validation to avoid loading PhoneBook with list of validation method calls
+
+    public static void validateInput(String name, String... phoneNumbers) {
+        checkIfNull(name, "Name is null");
+        for (String num : phoneNumbers) {
+            checkIfNull(num, "Phone number is null");
+            isValidPhoneNumber(num);
         }
     }
 
-//    public static void()
 }
