@@ -7,10 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class PBUtilityTest {
 
     @Test
-    void isNull() {
+    void isNotNull() {
+        assertEquals("Test", PBUtility.checkIfNull("Test", "Test throw"));
     }
 
     @Test
-    void isValidPhoneNumber() {
+    void isNull(){
+        assertThrows(IllegalArgumentException.class, () -> PBUtility.checkIfNull(null, "Expected exception thrown"));
     }
 }

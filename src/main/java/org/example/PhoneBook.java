@@ -11,8 +11,6 @@ public class PhoneBook {
 
     private Map<String, List<String>> phoneBook;
 
-    // Class utility methods
-
     public PhoneBook(){
         this.phoneBook = new HashMap<>();
     }
@@ -40,17 +38,9 @@ public class PhoneBook {
      * @return boolean - confirmation that the operation was successful
      */
 
-    // For each phoneNumber - put phoneNumber as value @ Person Key
-    // probably establish some error checking code to ensure phone has all digits, is not null, etc
-    // if so, put to key
-
     public boolean addAll(String name, List<String> phoneNumbers){
 
         PBUtility.validateInput(name, String.valueOf(phoneNumbers));
-
-        phoneNumbers
-                .stream()
-                .forEach(num -> PBUtility.isValidPhoneNumber(num));
 
         phoneBook.computeIfAbsent(name, k -> new ArrayList<>()).addAll(phoneNumbers);
 
@@ -61,8 +51,6 @@ public class PhoneBook {
      * remove - removes an entry to the composite associated data type
      * @param name - Name key used to access & remove marching entry
      */
-
-    //Map.remove at the given key
 
     public void remove(String name) {
         PBUtility.validateInput(name);
@@ -101,7 +89,6 @@ public class PhoneBook {
      * @return String - String of entry key if operation successful
      */
 
-    // for every entry in the map - find how to express this
     public String reverseLookUp(String phoneNumber){
         PBUtility.validateInput(phoneNumber);
 
